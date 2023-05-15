@@ -14,11 +14,17 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+//@NamedQueries 複数のNamedQueryをまとめたもので、NamedQueryをカンマで区切り指定
+//@NamedQuery 主キー以外の項目などで検索し、複数件の結果を取得したい場合に定義する
 @NamedQueries({
     @NamedQuery(
-        name = "getAllTasks",
-        query = "SELECT m FROM Task AS m ORDER BY m.id DESC"
-    )
+            name = "getAllTasks",
+            query = "SELECT m FROM Task AS m ORDER BY m.id DESC"
+            ),
+    @NamedQuery(
+            name = "getTasksCount",
+            query = "SELECT COUNT(m) FROM Task AS m"
+            )
 })
 @Table(name = "tasks")
 public class Task{
