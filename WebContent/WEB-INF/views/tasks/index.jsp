@@ -22,7 +22,7 @@
 
         <div id="pagination">
             （全 ${tasks_count} 件）<br />
-            <c:forEach var="i" begin="1" end="${(( - 1) / 15) + 1}"
+            <c:forEach var="i" begin="1" end="${((tasks_count - 1) / 15) + 1}"
                 step="1">
                 <c:choose>
                     <c:when test="${i == page}">
@@ -36,7 +36,7 @@
         </div>
 
         <p>
-            <a href="${pageContext.request.contextPath}/new">新規メッセージの投稿</a>
+            <a href="${pageContext.request.contextPath}/new">新規タスクの投稿</a>
         </p>
 
     </c:param>
