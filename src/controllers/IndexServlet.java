@@ -56,8 +56,15 @@ public class IndexServlet extends HttpServlet {
 
         request.setAttribute("tasks", tasks);
         request.setAttribute("tasks_count", tasks_count);     // 全件数
-        request.setAttribute("page", page);   
-        
+        request.setAttribute("page", page);
+
+     // フラッシュメッセージがセッションスコープにセットされていたら
+        // リクエストスコープに保存する（セッションスコープからは削除）
+        if(request.getSession().getAttribute("flush") != null) {
+            request.setAttribute("flush", request.getSession().getAttribute("flush"));
+            request.getSession().removeAttribute("flush");
+        }
+
         // ページ数
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/index.jsp");
